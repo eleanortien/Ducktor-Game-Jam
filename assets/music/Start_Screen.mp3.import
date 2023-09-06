@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Start_Screen.mp3-7149adc5a422a133fc33398c8ff94dd8.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Start_Screen.mp3"
+dest_files=[ "res://.import/Start_Screen.mp3-7149adc5a422a133fc33398c8ff94dd8.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

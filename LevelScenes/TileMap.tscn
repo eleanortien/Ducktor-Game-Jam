@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Resources/baseTilemap.tres" type="TileSet" id=1]
+[ext_resource path="res://scripts/autoTileGenerator.gd" type="Script" id=2]
+[ext_resource path="res://Resources/finalTilemap.tres" type="TileSet" id=3]
+
+[node name="THE WORLD" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="base" type="TileMap" parent="." groups=["tilemap"]]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 2
+collision_mask = 0
+format = 1
+
+[node name="walls" type="TileMap" parent="." groups=["tilemap"]]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 32, 32 )
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_tile_origin = 1
+format = 1

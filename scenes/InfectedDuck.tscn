@@ -1,0 +1,134 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/sprites/Peasant duck/Pixilart Sprite Sheet.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Enemy.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/Peasant duck/healthy peasant duck.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "Defeated",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 7.99999
+height = 8.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Spawn"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Position2D/AnimatedSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0.3 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Position2D/AnimatedSprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -0.5, 0.5 ), Vector2( -2, -7 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 104.785
+
+[sub_resource type="CapsuleShape2D" id=12]
+radius = 20.0
+height = 0.0
+
+[node name="Infected Duck" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+enemy_health = 8
+defeat_sound_path = "res://assets/sfx/duck.wav"
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 3, 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Position2D"]
+position = Vector2( -2, -7 )
+frames = SubResource( 2 )
+animation = "Idle"
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+position = Vector2( -1, 4 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Spawn = SubResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 12, 10 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="sensing_rad" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -12, -9 )
+shape = SubResource( 5 )
+
+[node name="hit_box" type="Area2D" parent="."]
+position = Vector2( 12, 10 )
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hit_box"]
+position = Vector2( -12, -11 )
+shape = SubResource( 12 )
+
+[node name="audio_player" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 12, 10 )

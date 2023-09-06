@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Hippocrates.mp3-d15701501147450b7358d28b1f1ba948.mp3str"
+
+[deps]
+
+source_file="res://assets/music/The Hippocrates.mp3"
+dest_files=[ "res://.import/The Hippocrates.mp3-d15701501147450b7358d28b1f1ba948.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

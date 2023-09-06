@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/music/Start_Screen.mp3" type="AudioStream" id=1]
+[ext_resource path="res://assets/UI stuff/winScreen.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Button.gd" type="Script" id=3]
+
+[node name="WinScreen" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleScreen" type="Control" parent="CanvasLayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Image" type="TextureRect" parent="CanvasLayer/TitleScreen"]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RestartButton" type="Button" parent="CanvasLayer/TitleScreen/Image"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 400.0
+margin_top = 475.0
+margin_right = 673.0
+margin_bottom = 523.0
+script = ExtResource( 3 )
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/TitleScreen/Image"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 401.0
+margin_top = 539.0
+margin_right = 672.0
+margin_bottom = 590.0
+script = ExtResource( 3 )
+is_quit = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+autoplay = true
